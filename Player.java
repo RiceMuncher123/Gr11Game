@@ -76,7 +76,7 @@ public class Player extends Actor
             playerDie();
     }
     public void playerDie(){
-        //Make a lose screen
+        //Make a lose s
     }
 
 }
