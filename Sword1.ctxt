@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Sword1
+comment1.params=player
+comment1.target=Sword1(greenfoot.Actor)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ swing()
+numComments=4

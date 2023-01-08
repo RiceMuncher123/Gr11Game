@@ -4,7 +4,7 @@ public class Player extends Actor
 {
     SimpleTimer time = new SimpleTimer();
     SimpleTimer jump = new SimpleTimer();
-    SimpleTimer shoot = new SimpleTimer();
+    SimpleTimer attack = new SimpleTimer();
     SimpleTimer gracePeriod = new SimpleTimer();
     SimpleTimer shieldCoolDown = new SimpleTimer();
     SuperStatBar healthBar = new SuperStatBar();
@@ -15,7 +15,7 @@ public class Player extends Actor
     {
         time.mark();
         jump.mark();
-        shoot.mark();
+        attack.mark();
         shieldCoolDown.mark();
         healthBar = new SuperStatBar (maxHealth, health, this, 32, 6, -32, Color.RED, Color.WHITE, false, Color.BLACK, 1);
     }
@@ -29,6 +29,10 @@ public class Player extends Actor
     public void act()
     {
         MouseInfo mouse = Greenfoot.getMouseInfo();
+        controls();
+    }
+
+    public void controls(){
         if(getX() > 599)
         {
             setLocation(598, getY());
@@ -65,16 +69,16 @@ public class Player extends Actor
         {
             setLocation(getX(), getY()+speed);
         }
+
     }
-    public void controls(){
-        //take keyboard info as a parameter
-    }
+
     public void takeDamage(int damageRecieved)
     {
         healthBar.update(health - damageRecieved);
         if(health <= 0)
             playerDie();
     }
+
     public void playerDie(){
         //Make a lose s
     }
