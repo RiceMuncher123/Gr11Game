@@ -19,9 +19,9 @@ public class Sword1 extends Weapons
         controls();
         if(swingSword == true){
             numTurns++;
-            turn(2);
+            turn(4);
         }
-        if(numTurns == 90){
+        if(numTurns == 45){
             swingSword = false;
             numTurns = 0;
             setRotation(10);

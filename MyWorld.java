@@ -13,6 +13,7 @@ public class MyWorld extends World
     Mage m = new Mage();
     Warrior w = new Warrior();
     Sword1 s = new Sword1(w);
+    Enemy1 e = new Enemy1();
     public MyWorld(String choice)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -28,6 +29,7 @@ public class MyWorld extends World
             addObject(p,50,380);
 
         Greenfoot.setSpeed(50);
+        addObject(e,500,380);
     }        
     public void swing()
     {
