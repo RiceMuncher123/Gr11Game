@@ -15,6 +15,9 @@ public class MyWorld extends World
     Sword1 s = new Sword1(w);
     Enemy1 enemy1 = new Enemy1();
     Enemy2 enemy2 = new Enemy2();
+    FakeEnemy2 fakeEnemy1 = new FakeEnemy2();
+    FakeEnemy2 fakeEnemy2 = new FakeEnemy2();
+    FakeEnemy2 fakeEnemy3 = new FakeEnemy2();
     Enemy3 enemy3 = new Enemy3();
     Enemy4 enemy4 = new Enemy4();
     Portal portal = new Portal();
@@ -32,7 +35,6 @@ public class MyWorld extends World
             addObject(w,50,380);
             playerType = 1;
         }
-
         else{
             addObject(p,50,380);
             playerType = 2;
@@ -98,6 +100,10 @@ public class MyWorld extends World
         }
         if(lvl == 1){
             addObject(enemy2,500,380);
+            addObject(fakeEnemy1,Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
+            addObject(fakeEnemy2,Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
+            addObject(fakeEnemy3,Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
+
         }
         if(lvl == 2){
             addObject(enemy3, 500, 380);

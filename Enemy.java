@@ -34,7 +34,7 @@ public class Enemy extends Actor
 
     public void enemyTakeDamage(int damageRecieved)
     {
-        if(takeDamageCoolDown.millisElapsed() >= 1000){
+        if(takeDamageCoolDown.millisElapsed() >= 500){
             health = health - damageRecieved;
             enemyHealth.update(health);
         }

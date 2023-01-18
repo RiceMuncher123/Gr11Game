@@ -10,22 +10,21 @@ public class Enemy2 extends Enemy
 {
   
     
-    boolean isFake = false;
-    
+    private boolean isFake = false;
     int randomNum = 0;
     public void act()
     {
         
-        if(Greenfoot.getRandomNumber(120) == 0){
+        if(Greenfoot.getRandomNumber(90) == 0){
             teleportToWall();
-            attack();
+            attack(isFake);
         }
         if(isTouching(MageBeam.class) || isTouching(Weapons.class)){
             enemyTakeDamage(25);
         }
     }
 
-    public void attack(){
+    public void attack(boolean isFake){
         MyWorld world = (MyWorld) getWorld();
         world.spawnKunai(getX(), getY(), isFake);
     

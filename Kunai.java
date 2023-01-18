@@ -30,7 +30,7 @@ public class Kunai extends Actor
             turnTowards(world.getPlayerX(), world.getPlayerY());
             turnedOnPlayer = false;
         }
-        if(isAtEdge())
+        if(isAtEdge() || (isTouching(Player.class)))
             getWorld().removeObject(this);
         move(speed);
     }
