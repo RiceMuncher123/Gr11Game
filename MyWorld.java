@@ -18,7 +18,7 @@ public class MyWorld extends World
     Enemy3 enemy3 = new Enemy3();
     Enemy4 enemy4 = new Enemy4();
     Portal portal = new Portal();
-    int lvl = 2;
+    int lvl = 0;
     int playerType;
     public MyWorld(String choice)
     {    
@@ -57,12 +57,17 @@ public class MyWorld extends World
         FireBall fb = new FireBall(speed);
         addObject(fb,x,y);
     }
+
     public void spawnIcicle(int x, int y){
         Icicle icicle = new Icicle();
         addObject(icicle, x, y - (Greenfoot.getRandomNumber(60)+10));
     }
-    
-    
+
+    public void spawnKunai(int x, int y, boolean isFake){
+        Kunai kunai = new Kunai(isFake);
+        addObject(kunai, x , y);
+    }
+
     public int getPlayerX(){
         if(playerType == 0)
             return m.getX();
@@ -88,7 +93,6 @@ public class MyWorld extends World
     }
 
     public void nextLevel(){
-        lvl++;
         if(lvl == 0){
             addObject(enemy1,500,380);
         }
@@ -104,6 +108,7 @@ public class MyWorld extends World
         if(lvl == 4){
             //addObject(enemy5, 500, 380);
         }
+        lvl++;
     }
 
 }
