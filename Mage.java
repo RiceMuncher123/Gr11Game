@@ -32,6 +32,9 @@ public class Mage extends Player
                 }
             }
         }
+        if(isTouching(Enemy.class)){
+            takeDamage(10);
+        }
     }
 
 }

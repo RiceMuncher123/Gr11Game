@@ -15,17 +15,21 @@ public class Enemy1 extends Enemy
     int actsPerSecondCount = 0;
     int direction = 1;
     int speed = 1;
+    int acts = 0;
     public void act()
     {
+        acts++;
         charge();
-        randomJump();
-        if(isTouching(MageBeam.class) || isTouching(Weapons.class)){
-            getWorld().removeObject(this);
+        if(getY() >= 380 && acts > 180){
+            jump();
+            acts = 0;
         }
+       
         if(getY() < 380){
-            setLocation(getX(), getY() +1);
-            if(getY() % 2 == 0)
-                turn(1);
+            setLocation(getX(), getY() +1);    
+        }
+        if(isTouching(MageBeam.class) || isTouching(Weapons.class)){
+            enemyTakeDamage(50);
         }
     }
 
@@ -41,11 +45,9 @@ public class Enemy1 extends Enemy
             speed = 1;
         }
     }
-    public void randomJump(){
-        int num = Greenfoot.getRandomNumber(10);
-        if(num == 1){
-            setLocation(getX(), getY() - 120);
-        }
+    public void jump(){
+        if(Greenfoot.getRandomNumber(2) == 0)
+            setLocation(getX(), getY() - 160);
     }
 
 }
