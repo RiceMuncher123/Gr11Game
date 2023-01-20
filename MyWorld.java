@@ -20,8 +20,9 @@ public class MyWorld extends World
     FakeEnemy2 fakeEnemy3 = new FakeEnemy2();
     Enemy3 enemy3 = new Enemy3();
     Enemy4 enemy4 = new Enemy4();
+    Enemy5 enemy5 = new Enemy5();
     Portal portal = new Portal();
-    int lvl = 0;
+    int lvl = 4;
     int playerType;
     public MyWorld(String choice)
     {    
@@ -69,7 +70,15 @@ public class MyWorld extends World
         Kunai kunai = new Kunai(isFake);
         addObject(kunai, x , y);
     }
-
+    
+    public void spawnBossAttack(int x, int y){
+        bossAttack laser = new bossAttack();
+        addObject(laser,x, y);
+    }
+    public void spawnWallLaser(){
+        bossAttack2 wallLaser = new bossAttack2();
+        addObject(wallLaser, 0, 200);
+    }
     public int getPlayerX(){
         if(playerType == 0)
             return m.getX();
@@ -112,7 +121,7 @@ public class MyWorld extends World
             addObject(enemy4, 500, 380);
         }
         if(lvl == 4){
-            //addObject(enemy5, 500, 380);
+            addObject(enemy5, 500, 380);
         }
         lvl++;
     }

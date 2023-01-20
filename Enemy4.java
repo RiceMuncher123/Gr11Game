@@ -27,6 +27,9 @@ public class Enemy4 extends Enemy
             acts = 0;
         }
         acts++;
+        if(isTouching(MageBeam.class) || isTouching(Weapons.class)){
+            enemyTakeDamage(10);
+        }
     }
 
     public void shootIscicles(){

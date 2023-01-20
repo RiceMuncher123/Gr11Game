@@ -8,12 +8,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class bossAttack extends Actor
 {
+    GreenfootImage bossAttack = new GreenfootImage("images/bossBeam.png");
+    private int speed = 4;
     /**
      * Act - do whatever the bossAttack wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public bossAttack(){
+        setImage(bossAttack);
+        bossAttack.scale(100,25);
+        turnTowards(Greenfoot.getRandomNumber(600),Greenfoot.getRandomNumber(400));
+    }
+
     public void act()
     {
-        // Add your action code here.
+        move(speed);
+        if(isAtEdge()){
+            getWorld().removeObject(this);
+        }
     }
+
 }
