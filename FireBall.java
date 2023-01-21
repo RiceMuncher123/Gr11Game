@@ -6,13 +6,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class FireBall extends Actor
+public class FireBall extends EnemyProjectile
 {
     /**
      * Act - do whatever the FireBall wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int speed;
+    private int speed;
+    private int damage = 15;
+    private boolean delWorld = false;
     GreenfootImage fireBall = new GreenfootImage("images/FireAttack.png");    
     public FireBall(int direction){
         setImage(fireBall);
@@ -28,9 +30,15 @@ public class FireBall extends Actor
 
     public void act()
     {
+        if(isTouching(Shield.class)){
+             hitShield();
+        }
         move(speed);
-        if(isAtEdge())
-        {
+        if(isTouching(Player.class) && !isTouching(Shield.class)){
+            dealDamage(damage);
+            getWorld().removeObject(this);
+        }
+        else if(isAtEdge()){
             getWorld().removeObject(this);
         }
     }

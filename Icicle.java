@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Icicle extends Actor
+public class Icicle extends EnemyProjectile
 {
     public int speed = 4;
     /**
@@ -14,10 +14,10 @@ public class Icicle extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     GreenfootImage icicle = new GreenfootImage("images/Icicle.png");    
-    boolean homingStage1Done = true;
+    private boolean homingStage1Done = true;
     private int acts = 0;
-    boolean moveUntilDespawn = false;
-    
+    private boolean moveUntilDespawn = false;
+    private int damage = 5;
     public Icicle(){
         setImage(icicle);
         icicle.scale(100,25);
@@ -26,6 +26,9 @@ public class Icicle extends Actor
     public void act()
     {
         acts++;
+        if(isTouching(Shield.class)){
+             hitShield();
+        }
         if(homingStage1Done){
             homingStage1();
             if(acts < 90)
@@ -39,13 +42,19 @@ public class Icicle extends Actor
         if (getY() >= 50){
             move(speed);
         }
-        if(isAtEdge())
-            getWorld().removeObject(this);
+       
         if(moveUntilDespawn){
             move(speed/2);
         }
+        if(isTouching(Player.class) && !isTouching(Shield.class)){
+            dealDamage(damage);
+            getWorld().removeObject(this);
+        }
+        else if(isAtEdge()){
+            getWorld().removeObject(this);
+        }
     }
-    
+
     public void homingStage1(){
         turnTowards(Greenfoot.getRandomNumber(600),200);
     }

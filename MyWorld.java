@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class MyWorld extends World
 {
     //https://thewisehedgehog.itch.io/hs2020
+    SimpleTimer takeDamageCoolDown = new SimpleTimer();
     Player p = new Player();
     Mage m = new Mage();
     Warrior w = new Warrior();
@@ -22,6 +23,7 @@ public class MyWorld extends World
     Enemy4 enemy4 = new Enemy4();
     Enemy5 enemy5 = new Enemy5();
     Portal portal = new Portal();
+    private int direction;
     int lvl = 4;
     int playerType;
     public MyWorld(String choice)
@@ -40,11 +42,21 @@ public class MyWorld extends World
             addObject(p,50,380);
             playerType = 2;
         }
+        takeDamageCoolDown.mark();
         nextLevel();
         Greenfoot.setSpeed(50);
     }        
 
-    public void swing()
+    public void spawnShield(int x, int y){
+        Shield shield = new Shield();
+        addObject(shield,x,y);
+    }
+    public void playerTakeDamage(int damage){
+        
+        m.takeDamage(damage);
+        
+    }
+     public void swing()
     {
         addObject(s,50,380);
         s.swing();
@@ -66,19 +78,33 @@ public class MyWorld extends World
         addObject(icicle, x, y - (Greenfoot.getRandomNumber(60)+10));
     }
 
-    public void spawnKunai(int x, int y, boolean isFake){
-        Kunai kunai = new Kunai(isFake);
+    public void spawnKunai(int x, int y, int damage ){
+        Kunai kunai = new Kunai(damage);
         addObject(kunai, x , y);
     }
-    
+
     public void spawnBossAttack(int x, int y){
         bossAttack laser = new bossAttack();
         addObject(laser,x, y);
     }
+  
     public void spawnWallLaser(){
         bossAttack2 wallLaser = new bossAttack2();
-        addObject(wallLaser, 0, 200);
+        direction = Greenfoot.getRandomNumber(2);
+        if(direction == 0){
+            addObject(wallLaser, 0, 200);
+        }
+        if(direction == 1){
+            addObject(wallLaser,599 , 200);
+        }
+        
     }
+      public void spawnSpinningLaser(int x, int y){
+        bossAttack3 spin = new bossAttack3();
+        addObject(spin, x, y);
+    }
+    
+
     public int getPlayerX(){
         if(playerType == 0)
             return m.getX();
@@ -104,6 +130,7 @@ public class MyWorld extends World
     }
 
     public void nextLevel(){
+        createPortal();
         if(lvl == 0){
             addObject(enemy1,500,380);
         }
@@ -125,5 +152,5 @@ public class MyWorld extends World
         }
         lvl++;
     }
-
 }
+

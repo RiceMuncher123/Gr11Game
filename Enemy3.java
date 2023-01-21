@@ -8,16 +8,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Enemy3 extends Enemy
 {
+    private int damage = 15;
     int speed = 5;
-    /**
-     * Act - do whatever the Enemy3 wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+   
     public void act()
     {
         // Add your action code here.
         //https://www.pinterest.ca/pin/724375921301934272/
         move(speed);
+        if(isTouching(Player.class)){
+            dealDamage(damage);
+        }
         if(isAtEdge()){
             speed = speed*-1;
             attack();
@@ -25,6 +26,7 @@ public class Enemy3 extends Enemy
         if(isTouching(MageBeam.class) || isTouching(Weapons.class)){
             enemyTakeDamage(20);
         }
+
     }
 
     public void attack(){

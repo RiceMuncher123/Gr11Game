@@ -9,11 +9,12 @@ public class Player extends Actor
     SuperStatBar healthBar = new SuperStatBar();
     private static int maxHealth = 100;
     private int health = maxHealth;
-    public static int speed = 7;
-    public int vSpeed = 0;
-    public int acceleration = 10;
-    public int jumpStrength = 60;
-    public int vSpeedIncrement = 0;
+    private static int speed = 7;
+    private int vSpeed = 0;
+    private int acceleration = 10;
+    private int jumpStrength = 60;
+    private int vSpeedIncrement = 0;
+
     //Makes sure onGround() == false if statement in controls activates once for checkFall();
     public boolean onGroundSwitch = true;
     public Player()
@@ -65,13 +66,26 @@ public class Player extends Actor
     }
 
     public void controls(){
+        String key = Greenfoot.getKey();
+        if (key != null){
+            if (key.equals("p") || key.equals("P")){
+                MyWorld gw = (MyWorld)getWorld();
+                Greenfoot.setWorld(new PauseWorld(gw));
+            }
+        }
+        if(Greenfoot.isKeyDown("e") && shieldCoolDown.millisElapsed() > 3500)
+        {
+            MyWorld world = (MyWorld) getWorld();
+            world.spawnShield(getX(),getY());
+            shieldCoolDown.mark();
+        }
         if(getX() > 599)
         {
-            setLocation(598, getY());
+            setLocation(599, getY());
         }
         if(getX() < 1)
         {
-            setLocation(2, getY());
+            setLocation(1, getY());
         }
         if(time.millisElapsed() > 1000 && Greenfoot.isKeyDown("d") && Greenfoot.isKeyDown("shift"))
         {
@@ -119,7 +133,8 @@ public class Player extends Actor
 
     public void takeDamage(int damageRecieved)
     {
-        if(takeDamageCoolDown.millisElapsed() > 1000){
+
+        if(takeDamageCoolDown.millisElapsed() > 200){
             health = health - damageRecieved;
             healthBar.update(health);
             takeDamageCoolDown.mark();
@@ -129,6 +144,7 @@ public class Player extends Actor
     }
 
     public void playerDie(){
+
         getWorld().removeObject(this);
     }
 

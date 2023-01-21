@@ -29,7 +29,8 @@ public class Enemy extends Actor
     }
 
     public void dealDamage(int damage){
-
+        MyWorld world = (MyWorld) getWorld();
+        world.playerTakeDamage(damage);
     }
 
     public void enemyTakeDamage(int damageRecieved)

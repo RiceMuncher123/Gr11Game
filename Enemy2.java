@@ -8,33 +8,34 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Enemy2 extends Enemy
 {
-  
+    private int damage = 3;
     
     private boolean isFake = false;
     int randomNum = 0;
     public void act()
     {
-        
-        if(Greenfoot.getRandomNumber(90) == 0){
+        if(isTouching(Player.class)){
+            dealDamage(damage);
+        }
+        if(Greenfoot.getRandomNumber(30) == 0){
             teleportToWall();
-            attack(isFake);
+            attack(damage);
         }
         if(isTouching(MageBeam.class) || isTouching(Weapons.class)){
             enemyTakeDamage(25);
         }
     }
 
-    public void attack(boolean isFake){
+    public void attack(int damage){
         MyWorld world = (MyWorld) getWorld();
-        world.spawnKunai(getX(), getY(), isFake);
-    
+        world.spawnKunai(getX(), getY(), damage);
     }
 
     public void teleportToWall(){
         randomNum = Greenfoot.getRandomNumber(2);
         if(randomNum == 0)
-            setLocation(5, Greenfoot.getRandomNumber(200)+10); 
+            setLocation(10, Greenfoot.getRandomNumber(200)+10); 
         else
-            setLocation(595,Greenfoot.getRandomNumber(200)+10);
+            setLocation(590,Greenfoot.getRandomNumber(200)+10);
     }
 }

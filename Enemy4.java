@@ -16,8 +16,12 @@ public class Enemy4 extends Enemy
     int speed = 2;
     int direction = 1;
     int spawnIscicle = 0;
+    private int damage = 10;
     public void act()
     {
+        if(isTouching(Player.class)){
+            dealDamage(damage);
+        }
         move(speed*direction);
         if(isAtEdge())
             direction = direction*-1;
