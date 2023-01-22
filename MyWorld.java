@@ -24,7 +24,7 @@ public class MyWorld extends World
     Enemy5 enemy5 = new Enemy5();
     Portal portal = new Portal();
     private int direction;
-    int lvl = 4;
+    int lvl = 2;
     int playerType;
     public MyWorld(String choice)
     {    
@@ -68,9 +68,15 @@ public class MyWorld extends World
         addObject(mb,x,y);           
     }
 
-    public void spawnFireBall(int x, int y, int speed){
-        FireBall fb = new FireBall(speed);
+    public void spawnFireBall(int x, int y){
+        FireBall fb = new FireBall();
         addObject(fb,x,y);
+    }
+    public void spawnFireBallPt2(){
+        for(int i = 0; i < 5; i++){
+            FireBallPt2 fb2 = new FireBallPt2();
+            addObject(fb2, Greenfoot.getRandomNumber(600), 0);
+        }
     }
 
     public void spawnIcicle(int x, int y){
@@ -136,16 +142,15 @@ public class MyWorld extends World
         }
         if(lvl == 1){
             addObject(enemy2,500,380);
-            addObject(fakeEnemy1,Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
-            addObject(fakeEnemy2,Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
-            addObject(fakeEnemy3,Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
-
+            addObject(fakeEnemy1,590, 380);
+            addObject(fakeEnemy2,10, 380);
+            addObject(fakeEnemy3,10, 380);
         }
         if(lvl == 2){
-            addObject(enemy3, 500, 380);
+            addObject(enemy3, 500, 350);
         }
         if(lvl == 3){
-            addObject(enemy4, 500, 380);
+            addObject(enemy4, 500, 350);
         }
         if(lvl == 4){
             addObject(enemy5, 500, 380);

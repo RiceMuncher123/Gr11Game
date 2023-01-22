@@ -18,14 +18,34 @@ public class Enemy1 extends Enemy
     private int direction = 1;
     private int speed = 1;
     private int acts = 0;
-    GreenfootImage[] moving = new GreenfootImage[10];
+    GreenfootImage[] movingRight = new GreenfootImage[10];
+    GreenfootImage[] movingLeft = new GreenfootImage[10];
+    String facing = "right";
     public Enemy1(){
-        for(int i = 0; i < moving.length; i++){
-            moving[i] = new GreenfootImage("images/Goblin/tile
+        for(int i = 0; i < movingRight.length; i++){
+            movingRight[i] = new GreenfootImage("images/Goblin/tile00" + i + ".png");
         }
+        for(int i = 0; i < movingLeft.length; i++){
+            movingLeft[i] = new GreenfootImage("images/Goblin/tile00" + i + ".png");
+            movingLeft[i].mirrorHorizontally();
+        }
+    }
+    private int imageIndex = 0;
+    public void animateWalk(){
+        if(facing.equals("right")){
+            setImage(movingRight[imageIndex]);
+            imageIndex = (imageIndex +1) % movingRight.length;
+        }
+        else
+        {
+            setImage(movingLeft[imageIndex]);
+            imageIndex = (imageIndex +1) % movingLeft.length;
+        }
+        
     }
     public void act()
     {
+        animateWalk();
         acts++;
         charge();
         if(getY() >= 380 && acts > 180){
@@ -41,7 +61,7 @@ public class Enemy1 extends Enemy
         if(isTouching(MageBeam.class) || isTouching(Weapons.class)){
             enemyTakeDamage(50);
         }
-
+        
     }
 
     public void charge(){
@@ -53,6 +73,10 @@ public class Enemy1 extends Enemy
         move(direction*speed);
         if(isAtEdge()){
             direction = direction*-1;
+            if(direction < 0)
+                facing = "left";
+            else
+                facing = "right";
             speed = 1;
         }
     }
