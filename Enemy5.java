@@ -47,7 +47,7 @@ public class Enemy5 extends Enemy
     {
         if(!gotCoords){
             newX = Greenfoot.getRandomNumber(600);
-            newY = Greenfoot.getRandomNumber(200);
+            newY = Greenfoot.getRandomNumber(170)+30;
             if(newX > getX()){
                 facing = "right";
                 speedX = 1;

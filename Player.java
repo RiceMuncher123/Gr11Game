@@ -2,6 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Player extends Actor
 {
+    SimpleTimer timeAlive = new SimpleTimer();
     SimpleTimer takeDamageCoolDown = new SimpleTimer();
     SimpleTimer time = new SimpleTimer();
     SimpleTimer attack = new SimpleTimer();
@@ -15,7 +16,7 @@ public class Player extends Actor
     private int acceleration = 10;
     private int jumpStrength = 60;
     private int vSpeedIncrement = 0;
-
+    private int millisAlive = 0;
     //Makes sure onGround() == false if statement in controls activates once for checkFall();
     public boolean onGroundSwitch = true;
     public Player()
@@ -25,6 +26,11 @@ public class Player extends Actor
         attack.mark();
         shieldCoolDown.mark();
         healthBar = new SuperStatBar (maxHealth, health, this, 32, 6, -32, Color.RED, Color.WHITE, false, Color.BLACK, 1);
+        timeAlive.mark();
+    }
+
+    public int updateTimer(){
+        return millisAlive;
     }
 
     public void addedToWorld (World w)
@@ -142,6 +148,9 @@ public class Player extends Actor
             MyWorld world = (MyWorld) getWorld();
             world.deHitBoss();
         }
+        millisAlive = timeAlive.millisElapsed();
+        MyWorld world = (MyWorld) getWorld();
+        world.updateLabel(millisAlive);
     }
 
     public void takeDamage(int damageRecieved)

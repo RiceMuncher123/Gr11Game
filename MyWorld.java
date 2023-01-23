@@ -26,8 +26,12 @@ public class MyWorld extends World
     private int direction;
     private boolean finishedAttack = true;
     private boolean attackBoss = false;
-    int lvl = 4;
+    int lvl = 0;
     int playerType;
+    private int seconds = 0;
+    private int minutes = 0;
+    private SuperDisplayLabel scoreBar;
+
     public MyWorld(String choice)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -46,8 +50,18 @@ public class MyWorld extends World
         }
         takeDamageCoolDown.mark();
         nextLevel();
+        scoreBar = new SuperDisplayLabel(Color.DARK_GRAY, Color.RED, new Font ("Comic Sans MS", true, false, 28), 600, "Good Luck! Don't Die!");
+        addObject(scoreBar, 300, 28);
+        scoreBar.setLabels(new String[] {"Minutes:", "Seconds:"});
+
         Greenfoot.setSpeed(50);
     }        
+
+    public void updateLabel (int time){
+        seconds = (time/1000) % 60;
+        minutes = (time/1000)/60;
+        scoreBar.update (new int[]{minutes, seconds});
+    }
 
     public void spawnShield(int x, int y){
         Shield shield = new Shield();
@@ -190,7 +204,7 @@ public class MyWorld extends World
             addObject(enemy4, 500, 350);
         }
         if(lvl == 4){
-            addObject(enemy5, 500, 380);
+            addObject(enemy5, 500, 20);
         }
         lvl++;
     }
