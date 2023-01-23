@@ -24,7 +24,9 @@ public class MyWorld extends World
     Enemy5 enemy5 = new Enemy5();
     Portal portal = new Portal();
     private int direction;
-    int lvl = 2;
+    private boolean finishedAttack = true;
+    private boolean attackBoss = false;
+    int lvl = 4;
     int playerType;
     public MyWorld(String choice)
     {    
@@ -51,12 +53,14 @@ public class MyWorld extends World
         Shield shield = new Shield();
         addObject(shield,x,y);
     }
+
     public void playerTakeDamage(int damage){
-        
+
         m.takeDamage(damage);
-        
+
     }
-     public void swing()
+
+    public void swing()
     {
         addObject(s,50,380);
         s.swing();
@@ -72,11 +76,18 @@ public class MyWorld extends World
         FireBall fb = new FireBall();
         addObject(fb,x,y);
     }
+
     public void spawnFireBallPt2(){
         for(int i = 0; i < 5; i++){
             FireBallPt2 fb2 = new FireBallPt2();
             addObject(fb2, Greenfoot.getRandomNumber(600), 0);
         }
+    }
+
+    public void summonStar()
+    {
+        star w = new star();
+        addObject(w,Greenfoot.getRandomNumber(600),0);
     }
 
     public void spawnIcicle(int x, int y){
@@ -90,11 +101,13 @@ public class MyWorld extends World
     }
 
     public void spawnBossAttack(int x, int y){
+        finishedAttack = false;
         bossAttack laser = new bossAttack();
         addObject(laser,x, y);
     }
-  
+
     public void spawnWallLaser(){
+        finishedAttack = false;
         bossAttack2 wallLaser = new bossAttack2();
         direction = Greenfoot.getRandomNumber(2);
         if(direction == 0){
@@ -103,13 +116,37 @@ public class MyWorld extends World
         if(direction == 1){
             addObject(wallLaser,599 , 200);
         }
-        
+
     }
-      public void spawnSpinningLaser(int x, int y){
+
+    public void spawnSpinningLaser(int x, int y){
+        finishedAttack = false;
         bossAttack3 spin = new bossAttack3();
         addObject(spin, x, y);
     }
-    
+
+    public void finishedAttack(){
+        finishedAttack = true;
+    }
+
+    public boolean getFinishedAttack(){
+        return finishedAttack;
+    }
+
+    public void hitBoss()
+    {
+        attackBoss = true;
+    }
+
+    public boolean returnHitBoss()
+    {
+        return attackBoss;
+    }
+
+    public void deHitBoss()
+    {
+        attackBoss = false;
+    }
 
     public int getPlayerX(){
         if(playerType == 0)

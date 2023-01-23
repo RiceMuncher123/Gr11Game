@@ -50,6 +50,8 @@ public class bossAttack3 extends EnemyProjectile
             }
             if(rotate >= numTurns || shieldTouches == 0)
             {
+                MyWorld world = (MyWorld) getWorld();
+                world.finishedAttack();
                 getWorld().removeObject(this);
             }
             turn(x);

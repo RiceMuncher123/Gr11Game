@@ -7,7 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class bossAttack2 extends EnemyProjectile
 {
-  
+
     private int damage = 25;
     private int speed = 3;
     private int acts = 0;
@@ -16,7 +16,7 @@ public class bossAttack2 extends EnemyProjectile
     public bossAttack2(){
         bossAttack2.scale(50,600);
         setImage(bossAttack2);
-       
+
     }
 
     public void act()
@@ -28,11 +28,13 @@ public class bossAttack2 extends EnemyProjectile
             MyWorld world = (MyWorld) getWorld();
             dealDamage(damage);
         }
-        if((speed < 0 && getX() > 60) || (speed > 0 && getX() < 540 ))
+        if((speed < 0 && getX() > 70) || (speed > 0 && getX() < 530 ))
             move(speed);
         acts++;
 
         if(acts >= 300){
+            MyWorld world = (MyWorld) getWorld();
+            world.finishedAttack();
             getWorld().removeObject(this);
         }
     }

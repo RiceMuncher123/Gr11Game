@@ -28,18 +28,23 @@ public class bossAttack extends EnemyProjectile
     {
         move(speed);
         if(isTouching(Shield.class)){
-             hitShield();
+            hitShield();
         }
-        if(isTouching(bossAttack.class)  && turn.millisElapsed() > 1000)
+        if(isTouching(bossAttack.class)  && getY() > 50 && turn.millisElapsed() > 500)
         {
             turnTowards(Greenfoot.getRandomNumber(600),400);
             turn.mark();
         }
-       if(isTouching(Player.class) && !isTouching(Shield.class)){
+        //if(turn.millisElapsed() 
+        if(isTouching(Player.class) && !isTouching(Shield.class)){
             dealDamage(damage);
             getWorld().removeObject(this);
         }
         else if(isAtEdge()){
+            if(getNeighbours(600, true, bossAttack.class).size() < 1){
+                MyWorld world = (MyWorld) getWorld();
+                world.finishedAttack();
+            }
             getWorld().removeObject(this);
         }
 

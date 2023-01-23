@@ -17,7 +17,7 @@ public class Shield extends Actor
     public Shield()
     {
         setImage(summonShield);
-        summonShield.scale(100,100);
+        summonShield.scale(125,125);
         grace.mark();
     }
 
@@ -25,20 +25,18 @@ public class Shield extends Actor
     {
         if(getNeighbours(600, true, Player.class).size() > 0){
             getCoords();
-            setLocation(x,y);
+            setLocation(x,y+5);
         }
-        else if(grace.millisElapsed() > 3000 || getNeighbours(600, true, Player.class).size() < 0)
+        if(grace.millisElapsed() > 3000 || getNeighbours(600, true, Player.class).size() < 0)
         {
-             MyWorld world = (MyWorld) getWorld();
+            MyWorld world = (MyWorld) getWorld();
             world.removeObject(this);
         }
-            
-        
+
     }
     public void getCoords(){
         MyWorld world = (MyWorld) getWorld();
         x = world.getPlayerX();
         y = world.getPlayerY();
-        setLocation(x,y);
     }
 }

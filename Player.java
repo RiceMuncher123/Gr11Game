@@ -6,6 +6,7 @@ public class Player extends Actor
     SimpleTimer time = new SimpleTimer();
     SimpleTimer attack = new SimpleTimer();
     SimpleTimer shieldCoolDown = new SimpleTimer();
+    SimpleTimer gracePeriod = new SimpleTimer();
     SuperStatBar healthBar = new SuperStatBar();
     private static int maxHealth = 100;
     private int health = maxHealth;
@@ -46,14 +47,14 @@ public class Player extends Actor
     }
 
     public boolean onGround(){
-        return getY() >= 380;
+        return getY() >= 363;
     }
 
     public void checkFall(){
         if(onGround()){
             vSpeed = 0;
             onGroundSwitch = true;
-            setLocation(getX(), 380);
+            setLocation(getX(), 363);
         }
         else{
             fall();
@@ -128,6 +129,18 @@ public class Player extends Actor
                 world.nextLevel();
             }
 
+        }
+        if(isTouching(star.class))
+        {
+            gracePeriod.mark();
+            removeTouching(star.class);
+            MyWorld world = (MyWorld) getWorld();
+            world.hitBoss();
+        }
+        if(gracePeriod.millisElapsed() > 3000)
+        {
+            MyWorld world = (MyWorld) getWorld();
+            world.deHitBoss();
         }
     }
 
