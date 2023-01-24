@@ -27,9 +27,6 @@ public class bossAttack extends EnemyProjectile
     public void act()
     {
         move(speed);
-        if(isTouching(Shield.class)){
-            hitShield();
-        }
         if(isTouching(bossAttack.class)  && getY() > 50 && turn.millisElapsed() > 500)
         {
             turnTowards(Greenfoot.getRandomNumber(600),400);
@@ -41,7 +38,7 @@ public class bossAttack extends EnemyProjectile
             world.playerTakeDamage(damage);
             getWorld().removeObject(this);
         }
-        else if(isAtEdge()){
+        else if(isAtEdge() || isTouching(Shield.class)){
             if(getNeighbours(600, true, bossAttack.class).size() <= 1 ){
                 MyWorld world = (MyWorld) getWorld();
                 world.finishedAttack();

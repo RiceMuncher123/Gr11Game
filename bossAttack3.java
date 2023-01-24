@@ -11,7 +11,7 @@ public class bossAttack3 extends EnemyProjectile
     GreenfootImage attack = new GreenfootImage("images/bossBeam.png");
     SimpleTimer attackDelay = new SimpleTimer();
     int rotate = 0;
-    int x = 1;
+    int x = 3;
     int numTurns = 360;
     int xScale = 1200;
     int yScale = 40;

@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Enemy2 extends Enemy
 {
-    //https://www.deviantart.com/ferzin-the-hedgehog/art/Shinju-Sprite-Sheet-158413737
+    
     private int damage = 3;
     private int acts = 0;
     private boolean isFake = false;

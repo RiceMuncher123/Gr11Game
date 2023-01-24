@@ -1,5 +1,4 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-//https://www.deviantart.com/zhalkon/art/Ice-Golem-Sprites-441510006
 /**
  * Write a description of class Enemy4 here.
  * 

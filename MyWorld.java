@@ -8,15 +8,78 @@ import java.util.ArrayList;
  */
 public class MyWorld extends World
 {
-
+    /*
+     * Sound Sources:
+     * 
+     * 
+     * 
+     * Code Sources:
+     * https://www.greenfoot.org/topics/63631/0 (By RcCookie)
+     * https://www.youtube.com/watch?v=VAHDrJ069sI (Channel Greenfoot)
+     * https://www.youtube.com/watch?v=QJC1w5D6Ef8  (Channel(Greenfoot)
+     * https://www.youtube.com/watch?v=TwID9i0Ey6o&t=1152s (Stewart Chan)
+     * Image Sources:
+     * https://craftpix.net/freebies/wizard-character-free-sprite/?utm_campaign=Website&utm_source=opengameart.org&utm_medium=public
+     * https://opengameart.org/content/lpc-goblin
+     * https://www.deviantart.com/ferzin-the-hedgehog/art/Shinju-Sprite-Sheet-158413737
+     * https://www.nicepng.com/downpng/u2e6a9w7w7t4y3t4_click-for-full-sized-image-black-wizard-wyvern/
+     * https://www.deviantart.com/zhalkon/art/Ice-Golem-Sprites-441510006
+     * https://opengameart.org/content/angels
+     * https://www.kindpng.com/imgv/hwxoJRT_kunai-png-transparent-png/
+     * https://toppng.com/free-image/fireball-png-PNG-free-PNG-Images_120790
+     * https://www.pngitem.com/middle/ioRhimx_transparent-ice-shards-hd-png-download/
+     * https://www.pngmart.com/image/34097
+     * https://similarpng.com/gold-black-shield-on-transparent-background-png/
+     * https://toppng.com/free-image/3d-gold-star-png-PNG-free-PNG-Images_115471
+     * http://pixelartmaker.com/art/d8947a58b4989bb
+     * https://stock.adobe.com/search?k=forest+cartoon
+     * https://www.shutterstock.com/image-vector/fairy-tale-castle-mountains-night-vector-1902864697
+     * https://www.freepik.com/free-vector/winter-mountains-scenery-landscape-nature-view_24770143.htm#query=icy%20mountain&position=2&from_view=keyword
+     * https://www.freepik.com/free-vector/evil-king-castle-throne-room-cartoon_4393637.htm
+     * https://opengameart.org/content/phantasy-dungeon-entrance
+     * https://shawnquinlivan.com/garden-labyrinth-entrance/
+     * Fire beam pt2, Instructions
+     * 
+     * https://www.pinterest.ca/pin/37647346864611658/
+     * 
+     * 
+     * 
+     * https://www.nicepng.com/ourpic/u2q8a9r5w7t4a9w7_laser-beam-eyes-png-red-laser-beam-png/
+     */
+    /*
+     * Instructions
+     * Your goal is to kill the enemies on each level and progress to the end
+     * When clicking enter, you get to chose the difficulty to play. Each difficulty had the player start off with different health
+     * Controls:
+     * Move Left: A
+     * Dash Left: Left Shift + A
+     * Move Right: D
+     * Dash Right: Left SHift + D
+     * Attack: Mouse Left Click + Aiming
+     * Jump: W
+     * Pause: P
+     * Shield: E (Can Block only most projectiles)
+     * You can change the lvl variable to change the level you are on (Description of each level below:)
+     */
     int lvl = 0;
     /*Levels:
+     * 0 - Goblin
+     * Attack: Goblin starts walking and jumping towards the edge
      * 1- Ninjas (1 Real rest fakes, Fakes don't deal damage)
+     * Attack: Ninja teleports to a wall randomly and throws a kunai at the player
      * 2- Flying Dragon (Shoots fire barrage when touching right edge)
+     * Attack: Shoots a fire ball in the air and releases a barrage of fire beams from the air
      * 3- Ice golem (Shoots homing icicles)
-     * 4- Boss- (Has 3 move patterns)
+     * Attack: Spawns a barrage of homing icicles at the player
+     * 4- Boss- (Has 3 move patterns and cna only by damaged by picking up a star)
+     * Star: Stars spawn once every 3 moves by the boss and once picked up, the player has a grace period to damage the boss.
+     * Attack: Boss shoots laser beam barrage , Wall laser (Shield does not work on purpose can only evade), Spinning Laser (Shield is needed to deflect)
      */
-    //https://thewisehedgehog.itch.io/hs2020
+    /*
+     * Known Bugs:
+     * -Can't Shoot if cursor is outside of the world
+     * -Sometimes player can damage boss more than once when touching the star
+     */
     SimpleTimer takeDamageCoolDown = new SimpleTimer();
     Player p = new Player(100);
     Mage m = new Mage(200);

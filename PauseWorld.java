@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PauseWorld extends World
 {
+    GreenfootImage paused = new GreenfootImage("images/paused.png");
+
     private MyWorld myWorld;
     /**
      * Constructor for objects of class PauseWorld.
@@ -18,14 +20,14 @@ public class PauseWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         this.myWorld = myWorld;
+        setBackground(paused);
+
     }
-    
-     public void act () {
+
+    public void act () {
         if (Greenfoot.isKeyDown("enter")){
             Greenfoot.setWorld(myWorld);
         }
 
-        
-            
     }
 }

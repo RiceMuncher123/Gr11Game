@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ClassChoice extends World
 {   
+    GreenfootImage classChoice = new GreenfootImage("images/ClassChoose.png");
+
     public String choice;
     Button left = new Button("red");
     Button middle = new Button("green");
@@ -16,6 +18,8 @@ public class ClassChoice extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+        setBackground(classChoice);
+
         addObject(left, 100,200);
         addObject(middle, 300,200);
         addObject(right,500,200);
@@ -34,9 +38,9 @@ public class ClassChoice extends World
         if(right.getWorld() == null){
             choice = "right";
             nextWorld();
-           
+
         }
-        
+
     }
 
     public void nextWorld(){

@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class InstructionWorld extends World
 {
+    GreenfootImage Instructions = new GreenfootImage("images/Instructions.png");
 
     /**
      * Constructor for objects of class InstructionWorld.
@@ -17,12 +18,14 @@ public class InstructionWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+        setBackground(Instructions);
+
     }
-    
-      public void act () {
+
+    public void act () {
         if (Greenfoot.isKeyDown("enter")){
             Greenfoot.setWorld(new ClassChoice());
         }
-            
+
     }
 }

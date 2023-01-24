@@ -12,7 +12,6 @@ public class Enemy1 extends Enemy
      * Act - do whatever the Enemy1 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    //https://opengameart.org/content/lpc-goblin
     private int damage = 5;
     private int actsPerSecondCount = 0;
     private int direction = 1;

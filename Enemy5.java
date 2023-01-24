@@ -1,5 +1,4 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-//https://ezgif.com/sprite-cutter/ezgif-3-657c580498.png
 public class Enemy5 extends Enemy
 {
     boolean isMoving = true;
@@ -115,7 +114,7 @@ public class Enemy5 extends Enemy
         }
         if(isTouching(MageBeam.class)){
             if(world.returnHitBoss() == true)
-                enemyTakeDamage(10);
+                enemyTakeDamage(20);
         }
         // Add your action code here.
         acts++;

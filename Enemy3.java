@@ -6,7 +6,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-// /https://www.nicepng.com/downpng/u2e6a9w7w7t4y3t4_click-for-full-sized-image-black-wizard-wyvern/
 public class Enemy3 extends Enemy
 {
     private int damage = 10;

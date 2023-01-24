@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class WelcomeWorld extends World
 {
+    GreenfootImage FrontCover = new GreenfootImage("images/FrontCover.png");
 
     /**
      * Constructor for objects of class WelcomeWorld.
@@ -17,15 +18,17 @@ public class WelcomeWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600,400, 1); 
+        setBackground(FrontCover);
+
     }
-    
+
     public void act () {
         if (Greenfoot.isKeyDown("enter")){
             Greenfoot.setWorld(new ClassChoice());
         }
         if (Greenfoot.isKeyDown("i") || Greenfoot.isKeyDown("I")){
-             Greenfoot.setWorld(new InstructionWorld());
+            Greenfoot.setWorld(new InstructionWorld());
         }
-            
+
     }
 }
