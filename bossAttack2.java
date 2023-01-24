@@ -9,7 +9,7 @@ public class bossAttack2 extends EnemyProjectile
 {
 
     private int damage = 25;
-    private int speed = 3;
+    private int speed = 4;
     private int acts = 0;
     private boolean setLocation = true;
     GreenfootImage bossAttack2 = new GreenfootImage("images/bossBeam2.png");
@@ -23,7 +23,7 @@ public class bossAttack2 extends EnemyProjectile
     {
         if(getX() == 599)
             speed = speed *-1;
-        if(isTouching(Player.class) && !isTouching(Shield.class))
+        if(isTouching(Player.class) && getNeighbours(600, true, Shield.class).size() < 1)
         {
             MyWorld world = (MyWorld) getWorld();
             dealDamage(damage);

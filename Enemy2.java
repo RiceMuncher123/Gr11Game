@@ -67,11 +67,11 @@ public class Enemy2 extends Enemy
     public void teleportToWall(){
         randomNum = Greenfoot.getRandomNumber(2);
         if(randomNum == 0){
-            setLocation(10, Greenfoot.getRandomNumber(200)+10); 
+            setLocation(10, Greenfoot.getRandomNumber(200)+50); 
             facing = "right";
         }
         else{
-            setLocation(590,Greenfoot.getRandomNumber(200)+10);
+            setLocation(590,Greenfoot.getRandomNumber(200)+50);
             facing = "left";
         }
     }

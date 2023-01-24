@@ -12,15 +12,27 @@ public class Button extends Actor
 
     public Button(String color){
         image = new GreenfootImage(160,60);
-        if(color == "red")
-            image.setColor(Color.RED);
-        else if(color == "blue")
-            image.setColor(Color.BLUE);
-        else
+        if(color == "red"){
             image.setColor(Color.GREEN);
-        image.fill();
+            image.fill();
+            image.setColor(Color.BLACK);
+            image.drawString("Easy", 60,40);
+        }
+        else if(color == "blue"){
+            image.setColor(Color.RED);
+            image.fill();
+            image.setColor(Color.BLACK);
+            image.drawString("Hard",60,40);
+        }
+        else{
+            image.setColor(Color.ORANGE);
+            image.fill();
+            image.setColor(Color.BLACK);
+            image.drawString("Medium",60,40);
+        }
         setImage (image);
     }
+
     public void act()
     {
         if(Greenfoot.mouseClicked(this))

@@ -16,8 +16,8 @@ public class Mage extends Player
     GreenfootImage[] movingRight = new GreenfootImage[3];
     GreenfootImage[] movingLeft = new GreenfootImage[3];
     String facing = "right";
-    public Mage(){
-        super();
+    public Mage(int health){
+        super(health);
         for(int i = 0; i < movingRight.length; i++){
             movingRight[i] = new GreenfootImage("images/wizard_ice/run_" + i + ".png");
             movingRight[i].scale(movingRight[i].getWidth() - 350, movingRight[i].getHeight() - 350);

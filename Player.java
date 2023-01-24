@@ -9,8 +9,8 @@ public class Player extends Actor
     SimpleTimer shieldCoolDown = new SimpleTimer();
     SimpleTimer gracePeriod = new SimpleTimer();
     SuperStatBar healthBar = new SuperStatBar();
-    private static int maxHealth = 100;
-    private int health = maxHealth;
+    private static int maxHealth;
+    private int health;
     private static int speed = 7;
     private int vSpeed = 0;
     private int acceleration = 10;
@@ -19,8 +19,10 @@ public class Player extends Actor
     private int millisAlive = 0;
     //Makes sure onGround() == false if statement in controls activates once for checkFall();
     public boolean onGroundSwitch = true;
-    public Player()
+    public Player(int hp)
     {
+        maxHealth = hp;
+        health = hp;
         takeDamageCoolDown.mark();
         time.mark();
         attack.mark();
@@ -161,12 +163,14 @@ public class Player extends Actor
             healthBar.update(health);
             takeDamageCoolDown.mark();
         }
-        if(health <= 0)
+        if(health <= 0){
+            MyWorld world = (MyWorld) getWorld();
+            world.gameOver(); 
             playerDie();
+        }
     }
 
     public void playerDie(){
-
         getWorld().removeObject(this);
     }
 

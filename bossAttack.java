@@ -36,8 +36,9 @@ public class bossAttack extends EnemyProjectile
             turn.mark();
         }
         //if(turn.millisElapsed() 
-        if(isTouching(Player.class) && !isTouching(Shield.class)){
-            dealDamage(damage);
+        if(isTouching(Mage.class) && getNeighbours(600, true, Shield.class).size() < 1){
+            MyWorld world = (MyWorld) getWorld();
+            world.playerTakeDamage(damage);
             getWorld().removeObject(this);
         }
         else if(isAtEdge()){

@@ -9,7 +9,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class ClassChoice extends World
 {   
     public String choice;
-    
     Button left = new Button("red");
     Button middle = new Button("green");
     Button right = new Button("blue");

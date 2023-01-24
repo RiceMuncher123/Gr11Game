@@ -32,9 +32,8 @@ public class bossAttack3 extends EnemyProjectile
     {
         if(attackDelay.millisElapsed() > 200)
         {
-            if(isTouching(Player.class))
+            if(isTouching(Mage.class))
             {
-                MyWorld world = (MyWorld) getWorld();
                 dealDamage(damage);
             }
             if(isTouching(Shield.class))

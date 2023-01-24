@@ -37,7 +37,7 @@ public class Kunai extends EnemyProjectile
             turnedOnPlayer = false;
         }
         move(speed);
-        if(isTouching(Player.class) && !isTouching(Shield.class)){
+        if(isTouching(Player.class) && getNeighbours(600, true, Shield.class).size() < 1){
             dealDamage(damage);
             getWorld().removeObject(this);
         }

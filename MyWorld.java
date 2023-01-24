@@ -8,13 +8,20 @@ import java.util.ArrayList;
  */
 public class MyWorld extends World
 {
-  
+
+    int lvl = 0;
+    /*Levels:
+     * 1- Ninjas (1 Real rest fakes, Fakes don't deal damage)
+     * 2- Flying Dragon (Shoots fire barrage when touching right edge)
+     * 3- Ice golem (Shoots homing icicles)
+     * 4- Boss- (Has 3 move patterns)
+     */
     //https://thewisehedgehog.itch.io/hs2020
     SimpleTimer takeDamageCoolDown = new SimpleTimer();
-    Player p = new Player();
-    Mage m = new Mage();
-    Warrior w = new Warrior();
-    Sword1 s = new Sword1(w);
+    Player p = new Player(100);
+    Mage m = new Mage(200);
+    Mage m2 = new Mage(100);
+    Mage m3 = new Mage(1);
     Enemy1 enemy1 = new Enemy1();
     Enemy2 enemy2 = new Enemy2();
     FakeEnemy2 fakeEnemy1 = new FakeEnemy2();
@@ -27,12 +34,15 @@ public class MyWorld extends World
     private int direction;
     private boolean finishedAttack = true;
     private boolean attackBoss = false;
-    int lvl = 4;
     int playerType;
     private int seconds = 0;
     private int minutes = 0;
     private SuperDisplayLabel scoreBar;
-
+    GreenfootImage backRoundOne = new GreenfootImage("images/Backround1.png");
+    GreenfootImage backRoundTwo = new GreenfootImage("images/Backround2.jpg");
+    GreenfootImage backRoundThree = new GreenfootImage("images/Backround3.jpg");
+    GreenfootImage backRoundFour = new GreenfootImage("images/Backround4.jpg");
+    private boolean gameEnd = false;
     public MyWorld(String choice)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -42,16 +52,16 @@ public class MyWorld extends World
             addObject(m,50,380);            
         }
         else if(choice.equals("middle")){
-            addObject(w,50,380);
+            addObject(m2,50,380);
             playerType = 1;
         }
         else{
-            addObject(p,50,380);
+            addObject(m3,50,380);
             playerType = 2;
         }
         takeDamageCoolDown.mark();
         nextLevel();
-        scoreBar = new SuperDisplayLabel(Color.DARK_GRAY, Color.RED, new Font ("Comic Sans MS", true, false, 28), 600, "Good Luck! Don't Die!");
+        scoreBar = new SuperDisplayLabel(Color.BLACK, Color.RED, new Font ("Comic Sans MS", true, false, 28), 600, "Good Luck! Don't Die!");
         addObject(scoreBar, 300, 28);
         scoreBar.setLabels(new String[] {"Minutes:", "Seconds:"});
 
@@ -59,9 +69,12 @@ public class MyWorld extends World
     }        
 
     public void updateLabel (int time){
-        seconds = (time/1000) % 60;
-        minutes = (time/1000)/60;
-        scoreBar.update (new int[]{minutes, seconds});
+        if(!gameEnd){
+            seconds = (time/1000) % 60;
+            minutes = (time/1000)/60;
+            scoreBar.update (new int[]{minutes, seconds});
+        }
+
     }
 
     public void spawnShield(int x, int y){
@@ -70,15 +83,13 @@ public class MyWorld extends World
     }
 
     public void playerTakeDamage(int damage){
+        if(playerType == 0)
+            m.takeDamage(damage);
+        else if(playerType == 1)
+            m2.takeDamage(damage);
+        else
+            m3.takeDamage(damage);
 
-        m.takeDamage(damage);
-
-    }
-
-    public void swing()
-    {
-        addObject(s,50,380);
-        s.swing();
     }
 
     public void spawnLaser(int x,int y)
@@ -167,18 +178,18 @@ public class MyWorld extends World
         if(playerType == 0)
             return m.getX();
         else if(playerType == 1)
-            return w.getX();
+            return m2.getX();
         else
-            return p.getX();
+            return m3.getX();
     }
 
     public int getPlayerY(){
         if(playerType == 0)
             return m.getY();
         else if(playerType == 1)
-            return w.getY();
+            return m2.getY();
         else
-            return p.getY();
+            return m3.getY();
     }
 
     public void createPortal()
@@ -187,10 +198,16 @@ public class MyWorld extends World
         addObject(portal,550,350);
     }
 
+    public void gameOver() {
+        Greenfoot.stop();
+        scoreBar.update("Game Over! Your final time was " + minutes + ":" + seconds, true);
+    }
+
     public void nextLevel(){
         createPortal();
         if(lvl == 0){
-            addObject(enemy1,500,380);
+            setBackground(backRoundOne);
+            addObject(enemy1,500,360);
         }
         if(lvl == 1){
             addObject(enemy2,500,380);
@@ -199,13 +216,21 @@ public class MyWorld extends World
             addObject(fakeEnemy3,10, 380);
         }
         if(lvl == 2){
+            setBackground(backRoundTwo);
             addObject(enemy3, 500, 350);
         }
         if(lvl == 3){
+            setBackground(backRoundThree);
+
             addObject(enemy4, 500, 350);
         }
         if(lvl == 4){
+            setBackground(backRoundFour);
             addObject(enemy5, 500, 20);
+        }
+        if(lvl == 5){
+            scoreBar.update("You win! Your final time was " + minutes + ":" + seconds, true);
+            gameEnd = true;
         }
         lvl++;
     }

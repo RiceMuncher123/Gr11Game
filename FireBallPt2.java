@@ -32,7 +32,7 @@ public class FireBallPt2 extends EnemyProjectile
         if(isTouching(FireBallPt2.class)){
             setLocation(Greenfoot.getRandomNumber(600), 0);
         }
-        if(isTouching(Player.class) && !isTouching(Shield.class)){
+        if(isTouching(Player.class) && getNeighbours(600, true, Shield.class).size() < 1){
             dealDamage(damage);
             del = true;
         }

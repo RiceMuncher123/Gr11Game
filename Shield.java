@@ -17,7 +17,7 @@ public class Shield extends Actor
     public Shield()
     {
         setImage(summonShield);
-        summonShield.scale(125,125);
+        summonShield.scale(150,150);
         grace.mark();
     }
 
@@ -25,7 +25,7 @@ public class Shield extends Actor
     {
         if(getNeighbours(600, true, Player.class).size() > 0){
             getCoords();
-            setLocation(x,y+5);
+            setLocation(x+5,y+5);
         }
         if(grace.millisElapsed() > 3000 || getNeighbours(600, true, Player.class).size() < 0)
         {
