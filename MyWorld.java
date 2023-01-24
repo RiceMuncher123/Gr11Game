@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public class MyWorld extends World
 {
+  
     //https://thewisehedgehog.itch.io/hs2020
     SimpleTimer takeDamageCoolDown = new SimpleTimer();
     Player p = new Player();
@@ -26,7 +27,7 @@ public class MyWorld extends World
     private int direction;
     private boolean finishedAttack = true;
     private boolean attackBoss = false;
-    int lvl = 0;
+    int lvl = 4;
     int playerType;
     private int seconds = 0;
     private int minutes = 0;

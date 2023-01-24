@@ -77,8 +77,11 @@ public class Enemy5 extends Enemy
         else
             isMoving = false;
         MyWorld world = (MyWorld) getWorld();
-        finishedAttack = world.getFinishedAttack();
+        if(getNeighbours(600, true, EnemyProjectile.class).size() < 1){
+            finishedAttack = true;
+        }
         if(finishedAttack && !isMoving){
+
             finishedAttack = false;
             typeOfAttack = Greenfoot.getRandomNumber(3);
             if(typeOfAttack == 1 && lastAttack == 1)

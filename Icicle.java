@@ -27,7 +27,7 @@ public class Icicle extends EnemyProjectile
     {
         acts++;
         if(isTouching(Shield.class)){
-             hitShield();
+            hitShield();
         }
         if(homingStage1Done){
             homingStage1();
@@ -42,7 +42,7 @@ public class Icicle extends EnemyProjectile
         if (getY() >= 50){
             move(speed);
         }
-       
+
         if(moveUntilDespawn){
             move(speed/2);
         }
@@ -50,7 +50,7 @@ public class Icicle extends EnemyProjectile
             dealDamage(damage);
             getWorld().removeObject(this);
         }
-        else if(isAtEdge()){
+        else if(isAtEdge() || getNeighbours(600, true, Player.class).size() < 0){
             getWorld().removeObject(this);
         }
     }
@@ -60,8 +60,11 @@ public class Icicle extends EnemyProjectile
     }
 
     public void homingStage2(){
-        MyWorld world = (MyWorld) getWorld();
-        turnTowards(world.getPlayerX(), world.getPlayerY());
+        if(getNeighbours(600, true, Player.class).size() > 0){
+            MyWorld world = (MyWorld) getWorld();
+            turnTowards(world.getPlayerX(), world.getPlayerY());
+        }
+
     }
 
 }

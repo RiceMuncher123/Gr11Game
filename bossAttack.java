@@ -41,7 +41,7 @@ public class bossAttack extends EnemyProjectile
             getWorld().removeObject(this);
         }
         else if(isAtEdge()){
-            if(getNeighbours(600, true, bossAttack.class).size() < 1){
+            if(getNeighbours(600, true, bossAttack.class).size() <= 1 ){
                 MyWorld world = (MyWorld) getWorld();
                 world.finishedAttack();
             }

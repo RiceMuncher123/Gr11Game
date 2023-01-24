@@ -34,6 +34,7 @@ public class Shield extends Actor
         }
 
     }
+
     public void getCoords(){
         MyWorld world = (MyWorld) getWorld();
         x = world.getPlayerX();
