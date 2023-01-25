@@ -79,9 +79,12 @@ public class Player extends Actor
         if (key != null){
             if (key.equals("p") || key.equals("P")){
                 MyWorld gw = (MyWorld)getWorld();
+                gw.stopped();
                 Greenfoot.setWorld(new PauseWorld(gw));
             }
         }
+        
+       
         if(Greenfoot.isKeyDown("e") && shieldCoolDown.millisElapsed() > 3500)
         {
             MyWorld world = (MyWorld) getWorld();
@@ -152,6 +155,9 @@ public class Player extends Actor
         }
         millisAlive = timeAlive.millisElapsed();
         MyWorld world = (MyWorld) getWorld();
+        if (!world.isMusicPlaying() && (Greenfoot.isKeyDown("enter"))){
+            world.started();
+        }
         world.updateLabel(millisAlive);
     }
 

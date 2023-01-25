@@ -44,6 +44,6 @@ public class ClassChoice extends World
     }
 
     public void nextWorld(){
-        Greenfoot.setWorld(new MyWorld(choice));   
+        Greenfoot.setWorld(new MyWorld(choice));
     }
 }

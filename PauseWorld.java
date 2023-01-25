@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PauseWorld extends World
 {
-    GreenfootImage paused = new GreenfootImage("images/paused.png");
+    GreenfootImage paused = new GreenfootImage("images/Paused.png");
 
     private MyWorld myWorld;
     /**

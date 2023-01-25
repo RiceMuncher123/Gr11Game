@@ -27,11 +27,12 @@ public class Enemy extends Actor
     {
         // Add your action code here.
     }
-
+    //A method that allows the enemy class to deal damage
     public void dealDamage(int damage){
         MyWorld world = (MyWorld) getWorld();
         world.playerTakeDamage(damage);
     }
+    //Method that allows the enemy class to take damage
 
     public void enemyTakeDamage(int damageRecieved)
     {
@@ -44,7 +45,7 @@ public class Enemy extends Actor
             enemyDie();
         }
     }
-
+    //A method that allows the enemy to die
     public void enemyDie()
     {   
         MyWorld world = (MyWorld) getWorld();

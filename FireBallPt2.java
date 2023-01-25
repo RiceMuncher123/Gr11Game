@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class FireBallPt2 extends EnemyProjectile
 {
-    GreenfootImage part_two = new GreenfootImage("images/Fire.png");
+    GreenfootImage part_two = new GreenfootImage("images/FireAttack.png");
     /**
      * Act - do whatever the FireBallPt2 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -19,7 +19,7 @@ public class FireBallPt2 extends EnemyProjectile
     public FireBallPt2(){
         part_two.mirrorHorizontally();
         setImage(part_two);
-        part_two.scale(100,50);
+        part_two.scale(100,75);
     }
 
     public void act()
